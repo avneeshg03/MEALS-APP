@@ -1,0 +1,11 @@
+1) Grid View and Grid View Builder : Builder is used when we previously don't know about the number       
+        of items where as simple one is used when we have fixed amount to render on screen.
+
+2)SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 200),Defines Maximum Width of each grid item
+
+3)child aspect ratio: to tell how the items size according to their height and width relations.
+
+4)crossAxisSpacing: difference between two items
+  mainAxisSpacing
+
+5)
