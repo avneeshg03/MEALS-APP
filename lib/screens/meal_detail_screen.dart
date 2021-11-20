@@ -33,67 +33,66 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mealId = ModalRoute.of(context)?.settings.arguments as String;
+    final mealId = ModalRoute.of(context).settings.arguments as String;
     final selectedMeal =
         DUMMY_MEALS.firstWhere((meal) => mealId == meal.id ? true : false);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '${selectedMeal.title}',
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-            height: 300,
-            width: double.infinity,
-            child: Image.network(
-              selectedMeal.imageUrl,
-              fit: BoxFit.cover,
-            ),
+        appBar: AppBar(
+          title: Text(
+            '${selectedMeal.title}',
           ),
-          buildSectionTitle(context, 'Ingridients!!'),
-          buildContainer(
-            ListView.builder(
-              itemBuilder: (ctx, i) => Card(
-                color: Colors.redAccent,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  child: Text(
-                    selectedMeal.ingredients[i],
-                    style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                selectedMeal.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+            buildSectionTitle(context, 'Ingridients!!'),
+            buildContainer(
+              ListView.builder(
+                itemBuilder: (ctx, i) => Card(
+                  color: Colors.redAccent,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Text(
+                      selectedMeal.ingredients[i],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
+                itemCount: selectedMeal.ingredients.length,
               ),
-              itemCount: selectedMeal.ingredients.length,
             ),
-          ),
-          buildSectionTitle(context, 'Steps'),
-          buildContainer(
-            ListView.builder(
-              itemBuilder: (ctx, i) => Column(
-                children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Text('#${i + 1}'),
+            buildSectionTitle(context, 'Steps'),
+            buildContainer(
+              ListView.builder(
+                itemBuilder: (ctx, i) => Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Text('#${i + 1}'),
+                      ),
+                      title: Text(selectedMeal.steps[i]),
                     ),
-                    title: Text(selectedMeal.steps[i]),
-                  ),
-                  Divider(),
-                ],
+                    Divider(),
+                  ],
+                ),
+                itemCount: selectedMeal.steps.length,
               ),
-              itemCount: selectedMeal.steps.length,
             ),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).pop(mealId);
-            },
-            child: Icon(Icons.delete),
-          )
-        ]),
-      ),
-    );
+          ]),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).pop(mealId);
+          },
+          child: Icon(Icons.delete),
+        ));
   }
 }

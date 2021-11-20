@@ -21,10 +21,10 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   }
 
   @override
-  void didChangeDependicies() {
+  void didChangeDependencies() {
     if (!_loadedinitData) {
       final routeArgs =
-          ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+          ModalRoute.of(context).settings.arguments as Map<String, String>;
       categoryTitle = routeArgs['title'];
       final categoryId = routeArgs['id'];
       displayedMeals = DUMMY_MEALS.where((meal) {
@@ -39,7 +39,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   void _removeMeal(String mealId) {
     setState(() {
       displayedMeals.removeWhere((element) {
-        element.id == mealId;
+        return (element.id == mealId);
       });
     });
   }
